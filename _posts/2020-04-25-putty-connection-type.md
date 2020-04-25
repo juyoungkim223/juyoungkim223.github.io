@@ -33,12 +33,8 @@ ssh와 Rlogin은 비밀번호없이 서버에 접속할 수 있게 해준다.
 5. Serial  
 
 ## ssh, telnet, Rlogin의 공통점 : 다른컴퓨터에서 멀티-유저 컴퓨터에 로그인하는 방식
-멀티유저 컴퓨터는 Unix나 VMS(<https://ko.wikipedia.org/wiki/OpenVMS>)와 같은 OS기반 컴퓨터를 말한다. 이 말은 윈도우 컴퓨터(서버)로 접속하는 경우에 윈도우만의 방식으로 접속해야한다.
-
- 즉 위 3가지 연결방식은 윈도우서버에는 사용할 수 없다. 윈도우서버에 접속은 mstsc를 이용해야한다. 윈도우OS단에서 제공하는 기능이다.
-
-telnet, ssh, Rlogin은 모두 응용계층 프로토콜로 http요청 클라이언트에서 요청한다.
-
+멀티유저 컴퓨터는 Unix나 VMS(<https://ko.wikipedia.org/wiki/OpenVMS>)와 같은 OS기반 컴퓨터를 명령프롬프트 상에서 명령어로 조작할 수 있다.
+telnet, ssh, Rlogin은 모두 응용계층 프로토콜로 http요청 클라이언트에서 요청해 로그인 가능하다.
 네트워크 연결을 하는 경우 ssh 연결이 가장 보안적으로 안전하다. 클라이언트와 서버 모두 같은 방화벽안에 있다면 telnet이나 Rlogin도 좋지만 ssh가 가장 추천하는 방식이다.
 
 ### 참고
