@@ -12,9 +12,7 @@ kramdown:
 paginate: 10
 paginate_path: "page/:num"
 baseurl: ""
-
-
-
+# Site Settings, global variable e.g)site.email
 defaults:
   -
     scope:
@@ -25,8 +23,9 @@ defaults:
       styles : [highlight.css,gitment.css,post.css]
       scripts : [gitment.js, post.js]
 
-
-# Site Settings
+email                    : "car22332@gmail.com"
+github:
+  username               : "juyoungkim223"
 locale                   : "en-US"
 title                    : "youngcar 블로그"
 title_separator          : "-"
@@ -39,6 +38,8 @@ repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-m
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
+# search settings
+
 # Build settings
 markdown: kramdown
 
