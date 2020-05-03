@@ -20,7 +20,7 @@ odroid hc2 원보드 pc의 스펙은 이렇습니다.
 cpu는 삼성 갤럭시 S5에 사용되는 cpu입니다.  
 
 # os 부팅 디스크
-HC2가 지원하는 OS는 android와 ubuntu입니다. HC2는 NAS용으로 많이 사용하기 때문에 NAS용 운영체제인(OpenMediaValt)를 사용하지만 웹서버, NAS로 이용하기 위해 Ubuntu를 설치하겠습니다.  
+HC2가 지원하는 OS는 android와 ubuntu입니다. HC2는 NAS용으로 많이 사용하기 때문에 NAS용 운영체제인(OpenMediaValt)를 사용하지만 웹서버, NAS서버, 삼바서버로 이용하기 위해 Ubuntu를 설치하겠습니다.  
 ### 설치 과정
 
 1. 준비  
@@ -49,7 +49,7 @@ putty로 ssh 접속을 한다.
 여기까지 진행하면 odroid에 ubuntu설치와 접속은 완료됩니다.
 
 ### 하드디스크 마운트
-4테라 하드디스크를 마운트 하겠습니다. 우분투는 파일시스템에서 4TB 이상은 한번에 마운트 할 수가 없습니다. 따라서 파일시스템을 변경하겠습니다.
+4테라 하드디스크를 마운트 하겠습니다. 우분투는 현재 디스크label type에서 4TB 이상은 한번에 마운트 할 수가 없습니다. 따라서 디스크label type 을 gpt로 변경하겠습니다.
 
 1. 연결 디스크 확인  
 ``sudo fdisk -l``  
@@ -64,15 +64,16 @@ I/O size (minimum/optimal): 4096 bytes / 4096 bytes
 2. 파티션 생성  
 parted 명령어로 파티션 관련 명령을 할 수 있는 내부 명령창으로 이동하게 됩니다.
 파티션 생성을 잘못했을 시 ``print``로 파티션정보를 확인가능하고 ``rm 파티션번호``로 삭제할 수 있다.
-parted 명령어는 fdisk 명령어와 다르게 설정 즉시 설정 정보가 디스크에 바로 적용됩니다.
-fdisk는 메모리에 저장되고 ``w``로 쓰기작업을 해야 완료됩니다.
-``parted /dev/sda``
+parted 명령어는 fdisk 명령어와 다르게 설정 즉시 설정 정보가 디스크에 바로 적용됩니다.  
+``parted /dev/sda``로 해당 디스크의 파티션 작업을 하기위한 명령어를 입력합니다.  
 3. 디스크를 gpt형식으로 변환  
 디스크 라벨을 생성합니다.  
 ``(parted) mklabel gpt``
 4. 논리적단위 지정, 파티션 생성  
-파티션만 생성하고 파일시스템을 생성하지는 않는 단계입닌다.
-``unit GB`` , ``mkpart primary 0GB 2000GB`` ``mkpart primary 2000GB 4001GB``
+파티션만 생성하고 파일시스템을 생성하지는 않는 단계입니다.
+``unit GB`` , ``mkpart primary 0GB 2000GB`` ``mkpart primary 2000GB 4001GB``  
+이 방식으로 진행할 수도 있고 ``parted``를 사용하지 않는 방식으로
+``fdisk /dev/sda`` ,``n``으로 파티션을 만들수도 있습니다. 이 방식은 파티션 생성 후 ``w``로 디스크에 실제 쓰는 명령까지 해줘야합니다.
 ![](../../../static/img/20200502-odroid-ubuntu/make-partition.JPG)  
 5. 포맷 진행
 파일시스템을 생성하지 않으면 마운트할 수 없다.
