@@ -20,7 +20,7 @@ odroid hc2 원보드 pc의 스펙은 이렇습니다.
 cpu는 삼성 갤럭시 S5에 사용되는 cpu입니다.  
 
 # os 부팅 디스크
-HC2가 지원하는 OS는 android와 ubuntu입니다. HC2는 NAS용으로 많이 사용하기 때문에 NAS용 운영체제인(OpenMediaValt)를 사용하지만 웹서버, NAS서버, 삼바서버로 이용하기 위해 Ubuntu를 설치하겠습니다.  
+HC2가 지원하는 OS는 android와 ubuntu입니다. HC2는 NAS용으로 많이 사용하기 때문에 NAS용 운영체제인(OpenMediaValt)를 사용하지만 웹서버, 삼바서버로 이용하기 위해 Ubuntu를 설치하겠습니다.  
 ### 설치 과정
 
 1. 준비  
