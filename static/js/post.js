@@ -32,14 +32,12 @@ function gitment() {
     var gitment = new Gitment({
         id: window.location.pathname,
         owner: '{{site.github.username}}',
-        repo: '{{site.gitment.repo}}',
+        repo: 'https://juyoungkim223.github.io/gitment',
         oauth: {
-            client_id: '{{site.gitment.client_id}}',
-            client_secret: '{{site.gitment.client_secret}}',
+            client_id: '9106cc0210f140a41f3d',
+            client_secret: '69206a32c946390f071fadf5be5dfa0106201042',
         },
     });
     gitment.render('post-comment')
     $("#post-comment").removeClass('hidden');
 }
-
-

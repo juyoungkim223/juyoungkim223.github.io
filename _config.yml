@@ -38,6 +38,12 @@ repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-m
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
+
+site:
+  gitment:
+    repo:
+    client_id: 9106cc0210f140a41f3d
+    client_secret: 69206a32c946390f071fadf5be5dfa0106201042
 # search settings
 
 # Build settings
