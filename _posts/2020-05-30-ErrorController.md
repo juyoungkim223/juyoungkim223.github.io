@@ -2,7 +2,7 @@
 layout: post
 title: "스프링부트 커스텀 error페이지"
 date: 2020-05-30 01:14:28 -0400
-categories: odroid ubuntu
+categories: springboot error
 ---
 ## 스프링부트 커스텀 error페이지
 
