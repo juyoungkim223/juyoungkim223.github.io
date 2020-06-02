@@ -44,8 +44,7 @@ public class BasicErrorController extends AbstractErrorController {
 
 ### 3.  
 마지막으로 ErrorController 인터페이스를 구현하면 됩니다.
-아래 코드를 작성하지 말고 위의 yml 설정과 같이 ``server.error.path``만 바꿔주고 Controller 클래스에서 에러매핑을 하면 됩니다.
-
+Controller 클래스에서 에러매핑을 하면 됩니다.
 
 ```java
 @Controller
