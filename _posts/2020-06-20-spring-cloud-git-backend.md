@@ -185,7 +185,7 @@ management:
 2020-06-20 23:51:03.071  INFO 21912 --- [q2yuBcnhtL7jA-1] o.s.amqp.rabbit.core.RabbitAdmin         : Auto-declaring a non-durable, auto-delete, or exclusive Queue (springCloudBus.anonymous.dxynhiFXRq2yuBcnhtL7jA) durable:false, auto-delete:true, exclusive:true. It will be redeclared if the broker stops and is restarted while the connection factory is alive, but all messages will be lost.
 ```
 
-마이크로서비스는 변경된 설정정보를 WAS의 무중단 변경이 가능하고 클라우드 컨피그 서버와 연결된 서비스들은 중앙서버로부터 설정정보를 자동으로 업데이트받을 수 있게되었습니다.
+마이크로서비스는 변경된 설정정보를 어플리케이션과 분리할 수 있고 런타임에 주입해 컨피그 클라이언트는 자동 재시작 후 클라우드 컨피그 서버와 연결된 서비스들은 중앙서버로부터 설정정보를 자동으로 업데이트받을 수 있게 되었습니다.
 
 
 참고 : https://cloud.spring.io/spring-cloud-config/reference/html/
