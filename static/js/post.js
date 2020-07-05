@@ -29,7 +29,7 @@ function share(){
 
 
 function gitment() {
-    var gitment = new Gitment({
+    /*var gitment = new Gitment({
         id: window.location.pathname,
         owner: '{{site.github.username}}',
         repo: 'https://juyoungkim223.github.io/gitment',
@@ -38,6 +38,8 @@ function gitment() {
             client_secret: '69206a32c946390f071fadf5be5dfa0106201042',
         },
     });
-    gitment.render('post-comment')
+    gitment.render('post-comment')*/
+
     $("#post-comment").removeClass('hidden');
+
 }
