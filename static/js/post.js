@@ -8,7 +8,7 @@
 $(document).ready(function() {
     generateContent();
     // share();
-    gitment();
+    // gitment();
 });
 
 /**
@@ -40,6 +40,5 @@ function gitment() {
     });
     gitment.render('post-comment')*/
 
-    $("#post-comment").removeClass('hidden');
-
+    //$("#post-comment").removeClass('hidden');
 }
