@@ -36,7 +36,7 @@ sd 카드, 랜선을 꼽은 후 전원을 연결하면 odriod가 부팅하고 os
 
 3. 접속 설정  
 odroid ip는 공유기 설정에서 연결된 ip에서 ssh 서버의 내부ip가 나오지 않는다.  
-advanced port scanner 설치하여 내부 ip확인 후 내부망과 외부망으로 연결 시 내부포트 외부포트를 22번으로 포트포워딩 설정을 해준다.
+advanced port scanner 설치하여 내부 ip확인 후 내부망과 외부망으로 연결 시 내부포트 외부포트를 22번으로 포트포워딩 설정을 해준다.  
 ![](../../../static/img/20200502-odroid-ubuntu/port-fowording.JPG)  
 
 ### 원격 접속
