@@ -3,7 +3,10 @@ layout: post
 title: "springwebflux 개요 알아보기"
 date: 2022-05-06 0:1:28 +0900
 categories: springwebflux
+tags: spring webflux
 ---
+* TOC
+{:toc}
 ## 스프링 웹플럭스 특징
 
 - netty를 사용하면 내부적으로 Project Reactor(Reactive Streams의 구현체)를 기반으로 동작. 기본적으로 Project Reactor를 사용하지만 RxJava 등 다른구현체 사용가능.
@@ -11,44 +14,26 @@ categories: springwebflux
 - Spring WebFlux는 Spring MVC와 달리 Servlet과는 전혀 관계없이 만들어졌으며, 그렇기 때문에 더이상 WAS가 필요하지 않다
 
 
-
-
-
 ## Spring mvc와 비교
 
 ![](https://d2.naver.com/content/images/2020/02/spring-mvc-and-webflux-venn.png)
 
 
-
 ### 공통점
 
 - 컨트롤러 사용
-
 - 논블로킹 리액티브 클라이언트 사용
-
 ex) WebClient
-
 - 기본 설정은 Netty(reactor-netty)를 기반으로 하지만 별도 설정을 통해 다른 Servlet 3.1 스펙(3.1이후로만가능)을 준수하는 WAS 엔진(Tomcat, Jetty 등)도 사용할 수는 있다
-
 - Annotation-based 라우팅
-
-
-
 
 
 ### 차이점
 
-
-
 1. Spring webflux의 Event loop - 논블로킹I/O Thread다
-
-
-
 #### 서블릿
 
 ![](https://dz2cdn1.dzone.com/storage/temp/13213752-1586703123953.png)
-
-
 
 #### 네티
 
@@ -62,8 +47,6 @@ ex) WebClient
 
 ![](https://dz2cdn1.dzone.com/storage/temp/13213756-1586703381835.png)
 
-
-
 - 높은 cpu 작업
 
 - 디비 작업
@@ -72,14 +55,9 @@ ex) WebClient
 
 - 네트워크작업
 
-
-
 이유로 이벤트루프가 블락 가능하다. 이벤트루프를 추가해도 소켓에 바인딩된 이벤트루프를 대신 해서 다른이벤트루프가 동작하는 것은 안됨.
 
 멀티 cpu에서는 멀티플 이벤트루가 동시에 동작가능. 기본적으로 어플리케이션은 cpu 코어수만큼 이벤트루프가 시작된다.
-
-
-
 
 
 ![](https://dz2cdn1.dzone.com/storage/temp/13213758-1586703532027.png)
@@ -133,35 +111,16 @@ Channel handler.. interface : 네티의 I/O 이벤트를 처리 하거나 작업
 // 기존의 애너테이션 기반 라우팅
 
 @GetMapping("/hello")
-
 @ResponseBody
-
 public Mono<String> getHello() {
-
-
-
     return demoService.getHello();
-
-
-
 }
 
-
-
 // 함수 기반 라우팅
-
 @Bean
-
 public RouterFunction<ServerResponse> routes(DemoHandler demoHandler) {
-
-
-
     return RouterFunctions
-
         .route(RequestPredicates.GET("/hello"), demoHandler::getHello);
-
-
-
 }
 
 ```
@@ -187,15 +146,10 @@ reactor-core 라이브러리가 필요하다.
 ```
 
 <dependency>
-
     <groupId>io.projectreactor</groupId>
-
     <artifactId>reactor-core</artifactId>
-
     <version>3.3.9.RELEASE</version>
-
 </dependency>
-
 ```
 
 
@@ -213,25 +167,16 @@ reactor-core 라이브러리가 필요하다.
 #### flux mono
 
 Flux 와 Mono 의 차이점은 발행하는 데이터 갯수이다.
-
-
-
 Flux : 0 ~ N 개의 데이터 전달
-
 Mono : 0 ~ 1 개의 데이터 전달
 
 
 
 ```java
-
 // 0~ n개
-
 Flux<Integer> just = Flux.just(1, 2, 3, 4); // just() Flux/Mono를 생성, create(), generate()
-
 // 1개
-
 Mono<Integer> just1 = Mono.just(1);
-
 ```
 
 
@@ -253,72 +198,36 @@ flux와 mono는 리액티브스트림의 reactivestreams의 Publisher 인터페�
 ```java
 
 List<Integer> elements = new ArrayList<>();
-
-
-
 Flux<Integer> f = Flux.just(1, 2, 3, 4)
-
         .log()
-
         .doOnComplete(() -> System.out.println("dooncomplete"))
-
         .doOnNext(i -> System.out.println(i + "doonnext"));
-
-
-
 f.subscribe(elements::add);
-
-
-
 assertThat(elements).containsExactly(1, 2, 3, 4);
-
 ```
 
 
 
 ```
-
 reactor.Flux.Array.1                   : onSubscribe([Synchronous Fuseable] FluxArray.ArraySubscription)
-
 reactor.Flux.Array.1                     : | request(unbounded)
-
 reactor.Flux.Array.1                     : | onNext(1)
-
 1doonnext
-
 reactor.Flux.Array.1                     : | onNext(2)
-
 2doonnext
-
 reactor.Flux.Array.1                     : | onNext(3)
-
 3doonnext
-
 reactor.Flux.Array.1                     : | onNext(4)
-
 4doonnext
-
 reactor.Flux.Array.1                     : | onComplete()
-
 dooncomplete
-
 ```
 
-onSubscribe() – This is called when we subscribe to our stream
-
-
-
-request(unbounded) – When we call subscribe, behind the scenes we are creating a Subscription. This subscription requests elements from the stream. In this case, it defaults to unbounded, meaning it requests every single element available
-
-
-
-onNext() – This is called on every single element
-
+- onSubscribe() – This is called when we subscribe to our stream
+- request(unbounded) – When we call subscribe, behind the scenes we are creating a Subscription. This subscription requests elements from the stream. In this case, it defaults to unbounded, meaning it requests every single element available
+- onNext() – This is called on every single element
 Publisher가 next 신호를 보내면 호출된다.
-
-
-
-onComplete() – This is called last, after receiving the last element. There's actually a onError() as well, which would be called if there is an exception, but in this case, there isn't
+- onComplete() – This is called last, after receiving the last element. There's actually a onError() as well, which would be called if there is an exception, but in this case, there isn't
 
 스트림이 끝났을 때 발생. Publisher가 complete 신호를 보내면 호출된다.
 
@@ -326,13 +235,7 @@ onComplete() – This is called last, after receiving the last element. There's 
 
 큰 차이는 자바 8은 pull모델 리액티브는 Push모델이다.
 
-
-
-
-
 자바 8 streams는 모든 데이터를 당겨오고 결과로 반환한다. 리액티브는 외부리소스로 부터 들어오며 mutiple subscribers가 추가,제거 가능하며 무한한 스트림을 가질 수 있다.
-
-
 
 위의 과정은 combine streams, throttle streams, backpressure 와 같은 작업과 함께 사용 할 수 있다.
 
@@ -342,64 +245,35 @@ onComplete() – This is called last, after receiving the last element. There's 
 
 Backpressure is when a downstream can tell an upstream to send it fewer data in order to prevent it from being overwhelmed.
 
-
-
-
-
 ```java
 
 Flux.just(1, 2, 3, 4)
-
   .log()
-
   .subscribe(new Subscriber<Integer>() {
-
     private Subscription s;
-
     int onNextAmount;
 
-
-
     @Override
-
     public void onSubscribe(Subscription s) {
-
         this.s = s;
-
         s.request(2);
-
     }
 
 
 
     @Override
-
     public void onNext(Integer integer) {
-
         elements.add(integer);
-
         onNextAmount++;
-
         if (onNextAmount % 2 == 0) {
-
             s.request(2); // subscription을 통해 publisher에 데이터를 2개 요청, request가 없다면 더이상 onNext가 호출안됨
-
         }
-
         //다운스트림에 비어있으면 업스트림에 요청
-
     }
 
-
-
     @Override
-
     public void onError(Throwable t) {}
-
-
-
     @Override
-
     public void onComplete() {}
 
 });
@@ -479,19 +353,12 @@ subscriber 수에 관계없이 데이터를 publishing
 ```java
 
 ConnectableFlux<Object> publish = Flux.create(fluxSink -> {
-
             while(true) {
-
                 fluxSink.next(System.currentTimeMillis());
-
             }
-
         })
-
         .publish();
-
 publish.subscribe(System.out::println);
-
 publish.subscribe(System.out::println);
 
 
@@ -529,17 +396,11 @@ https://projectreactor.io/docs/core/snapshot/reference/#reactive.hotCold
 ```java
 
 ConnectableFlux<Object> publish = Flux.create(fluxSink -> {
-
     while(true) {
-
         fluxSink.next(System.currentTimeMillis());
-
     }
-
 })
-
   .sample(ofSeconds(2))
-
   .publish();
 
 ```
@@ -557,15 +418,10 @@ Subscription이 다른 스레드에서 동작한다.
 ```java
 
 Flux.just(1, 2, 3, 4)
-
   .log()
-
   .map(i -> i * 2)
-
   .subscribeOn(Schedulers.parallel())
-
   .subscribe(elements::add);
-
 ```
 
 
@@ -573,27 +429,20 @@ Flux.just(1, 2, 3, 4)
 ```
 
 20:03:27.531 <strong>[parallel-1]</strong> INFO  reactor.Flux.Array.1 - | request(unbounded)
-
 20:03:27.531 <strong>[parallel-1]</strong> INFO  reactor.Flux.Array.1 - | onNext(1)
-
 20:03:27.531 <strong>[parallel-1]</strong> INFO  reactor.Flux.Array.1 - | onNext(2)
-
 20:03:27.531 <strong>[parallel-1]</strong> INFO  reactor.Flux.Array.1 - | onNext(3)
-
 20:03:27.531 <strong>[parallel-1]</strong> INFO  reactor.Flux.Array.1 - | onNext(4)
-
 20:03:27.531 <strong>[parallel-1]</strong> INFO  reactor.Flux.Array.1 - | onComplete()
 
 ```
 
 
 
-- 참고
+# 참고
 
+<https://d2.naver.com/helloworld/6080222>
 
+<https://dzone.com/articles/spring-webflux-eventloop-vs-thread-per-request-mod>
 
-https://d2.naver.com/helloworld/6080222
-
-https://dzone.com/articles/spring-webflux-eventloop-vs-thread-per-request-mod
-
-https://www.baeldung.com/reactor-core
+<https://www.baeldung.com/reactor-core>

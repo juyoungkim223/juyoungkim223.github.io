@@ -2,8 +2,11 @@
 layout: post
 title: "libgdx 크로스플랫폼 개발 셋팅"
 date: 2020-07-05 22:13:28 +0900
+tags: libgdx android
 categories: libgdx android
 ---
+* TOC
+{:toc}
 클라이언트 2d 게임 개발을 위한 엔진을 찾고 있었습니다.
 
 ## 기존 사용 엔진과 비교

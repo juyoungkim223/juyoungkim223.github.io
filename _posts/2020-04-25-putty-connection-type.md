@@ -1,10 +1,14 @@
 ---
 layout: post
 title: "putty connection type"
+tags: putty
+toc: true
 date: 2020-04-25 01:14:28 -0400
 categories: putty connection
 ---
-
+* TOC
+{:toc}
+{:toc_sticky}
 # putty connection type
 putty를 사용해 원격세션 접속을 하려는 경우 연결프로토콜로 5가지를 선택할 수 있다.
 
@@ -37,7 +41,7 @@ ssh와 Rlogin은 비밀번호없이 서버에 접속할 수 있게 해준다.
 telnet, ssh, Rlogin은 모두 응용계층 프로토콜로 http요청 클라이언트에서 요청해 로그인 가능하다.  
 네트워크 연결을 하는 경우 ssh 연결이 가장 보안적으로 안전하다. 클라이언트와 서버 모두 같은 방화벽안에 있다면 telnet이나 Rlogin도 좋지만 ssh가 가장 추천하는 방식이다.
 
-### 참고
+# 참고
 - 연결 프로토콜 관련
 <https://documentation.help/PuTTY/you-what.html>  
 <https://www.ssh.com/ssh/putty/putty-manuals/0.68/Chapter3.html#using-rawprot>

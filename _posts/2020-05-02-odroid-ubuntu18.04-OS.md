@@ -1,9 +1,12 @@
 ---
 layout: post
 title: "odroid에 ubuntu 설치"
+tags: odroid ubuntu
 date: 2020-05-02 01:14:28 -0400
 categories: odroid ubuntu
 ---
+* TOC
+{:toc}
 오드로이드에 우분투 설치에 앞서 설치를 지원하는 우분투 버전 정보를 알기 위해 지원하는 커널을 확인을 하겠습니다.  
 공식사이트에서 hc2의 스펙을 가져왔습니다.  
 
@@ -94,7 +97,7 @@ parted 명령어는 fdisk 명령어와 다르게 설정 즉시 설정 정보가 
 ``df -h``로 마운트된 정보를 확인한다.
 ``/etc/fstab`` 파일 등 파일들이 read-only 상태로 수정이 불가능한 경우 read-write로 리마운팅 명령어 ``mount -o remount,rw /dev/sda1 /`` 로 해결가능하다.
 
-### 참고
+# 참고
 <https://wikidocs.net/16272>  
 <https://askubuntu.com/questions/1029040/how-to-manually-mount-a-partition>  
 <https://www.howtogeek.com/443342/how-to-use-the-mkfs-command-on-linux/>  

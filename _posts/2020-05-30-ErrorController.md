@@ -2,8 +2,11 @@
 layout: post
 title: "스프링부트 커스텀 error페이지"
 date: 2020-05-30 01:14:28 -0400
+tags: spring
 categories: springboot error
 ---
+* TOC
+{:toc}
 ## 스프링부트 커스텀 error페이지
 
 커스텀 404 페이지를 제공하기 위한 설정을 하겠습니다.  

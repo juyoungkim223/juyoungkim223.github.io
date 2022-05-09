@@ -2,9 +2,11 @@
 layout: post
 title: "서비스 디스커버리 with Spring Netflix's Eureka"
 date: 2020-06-27 19:13:28 +0900
+tags: spring eureka
 categories: Spring Netflix Eureka
 ---
-
+* TOC
+{:toc}
 유레카와 리본을 사용해 다음과 같은 기능을 구현해보겠습니다.  
 1. Eureka 서버의 서비스 디스커버리
 2. Eureka 클라이언트의 서비스 등록
@@ -212,9 +214,9 @@ Autowired로 호출하면 REST 요청에 대한 코드는 Feign이 처리하게 
 처음에 캐시 한 뒤 이후의 요청이 온다면 리본은 로컬 캐시 된 서비스 인스턴스IP를 가지고 요청을 로드밸런싱하기 때문에 위 로그는 나오지 않습니다.
 
 
-### 참고  
+# 참고  
 
-https://livebook.manning.com/book/spring-microservices-in-action/chapter-4/16  
-https://cloud.spring.io/spring-cloud-netflix/multi/multi__service_discovery_eureka_clients  
-https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html  
-https://www.yamicode.com/snippets/client-side-load-balancer-ribbon-with-feign-and-spring-cloud-for-microservices
+<https://livebook.manning.com/book/spring-microservices-in-action/chapter-4/16>  
+<https://cloud.spring.io/spring-cloud-netflix/multi/multi__service_discovery_eureka_clients>  
+<https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html>  
+<https://www.yamicode.com/snippets/client-side-load-balancer-ribbon-with-feign-and-spring-cloud-for-microservices>
