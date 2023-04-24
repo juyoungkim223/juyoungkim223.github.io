@@ -27,10 +27,10 @@ email                    : "car22332@gmail.com"
 github:
   username               : "juyoungkim223"
 locale                   : "en-US"
-title                    : "youngcar 블로그"
+title                    : "Game223 블로그"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "youngcar"
+name                     : "Game223"
 description              : "기록하기"
 url                      : "https://juyoungkim223.github.io"
 baseurl                  : ""
