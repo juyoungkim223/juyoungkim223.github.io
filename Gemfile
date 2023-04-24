@@ -31,3 +31,5 @@ gem 'jekyll-sitemap'
 gem 'jekyll-paginate'
 gem 'jekyll-gist'
 gem 'jekyll-include-cache'
+
+gem "webrick", "~> 1.8"
