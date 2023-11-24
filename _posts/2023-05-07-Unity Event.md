@@ -120,8 +120,8 @@ delegate와의 차이는 미리 인스턴스를 생성할 필요가 없다.
     private void onScoreChanged() =>
         OnScoreChanged?.Invoke(m_score);
 ```
-Score Property를 이용해서 Score가 변할 때마다 Action을 Invoke한다.
 
+3. Score Property를 이용해서 Score가 변할 때마다 Action을 Invoke한다.
 ```csharp
     private void OnEnable()
     {
