@@ -24,19 +24,21 @@ java에서는 monitor를 통해 스레드를 획득하게 되는데, 스레드�
 ![Alt text](../../../static/img/20231124-atomic/184344.png)
 
 ## Atomic Operations
-CAS(Compare-and-swap) 작업을 의미한다.
-
+CAS(Compare-and-swap) 작업을 의미한다.  
+![Alt text](../../../static/img/20231124-atomic/203747.png)
 ## CAS vs syncronized(thread locking 방식)
 CAS는 현재 읽은값과 비교값이 다르면 계속 변경을 시도한다. 이러한 상황에서 스레드는 이론적으로 busy-wait 상태이고 cpu의 thread는 계속해서 비교를 시도할 것이다.  
 반면, syncronized를 사용할 때는 thread locking이 되는데 이때는 운영체제에 의해 blocked 상태가 된다. notify()를 통해 운영체제에서 다시 runnable 상태가 된다. 이는 context-switching을 의미한다.
 
 ## AtomicReference SpringBoot 에서 사용해보기
 AtomicReference 초기화는 타입파라미터로 LocalDatetime을 넣어준 뒤 스프링에서 관리되는 Bean의 전역변수로 생성했다.  
-아래의 코드에서 asyncMethod()는 5초마다 실행하게 된다. ``@Async`` 어노테이션을 사용하지 않는다면 메서드 내부의 동작이 5초 이상 걸리게 되었을 때 5초 뒤에 실행되기로 한 메서드의 실행이 되지 않게 된다.  
+아래 예시에서는 TypeParameter를 LocalDatetime으로 지정했는데, TypeParameter에는 LocalDateTime 뿐만 아니라 어떠한 객체타입이라도 모두 가능하다.
+
+asyncMethod()는 5초마다 실행하게 된다. ``@Async`` 어노테이션을 사용하지 않는다면 메서드 내부의 동작이 5초 이상 걸리게 되었을 때 5초 뒤에 실행되기로 한 메서드의 실행이 되지 않게 된다.  
 지정한 시간에 실행하고 있는 스레드가 작업 중이어도 별도의 스레드를 통한 메서드 실행을 위해 ``@Async``를 붙여줌으로써 별도의 스레드를 통한 동작이 가능하게 된다.    
 이제 전역변수를 여러개의 스레드가 동시에 접근할 수 있는 상황이 되었다.  
-멀티스레딩에서의 전역변수 값을 캐시값으로 참조하게 되는 가시성과 스레드간의 값을 덮어씌우게 되는 동시접근 이슈를 해결할 수 있는 방법으로 jdk의 AtomicReference를 이용하여 LocalDatetime을 업데이트해보겠다.  
-아래 예시에서는 TypeParameter를 LocalDatetime으로 지정했는데, TypeParameter에는 LocalDateTime 뿐만 아니라 어떠한 객체타입이라도 모두 가능하다.
+멀티스레딩에서의 전역변수 값이 저장되어 있는 메인메모리 부터 값을 참조하지 않고 캐시메모리에 저장된 값을 참조하게 되는 가시성 이슈와 스레드간의 값을 덮어씌우게 되는 동시접근 이슈를 해결할 수 있는 방법으로 jdk의 AtomicReference를 이용하여 LocalDatetime을 업데이트해보겠다.  
+
 ```java
 import java.util.concurrent.atomic.AtomicReference;
 import org.springframework.scheduling.annotation.Async;
