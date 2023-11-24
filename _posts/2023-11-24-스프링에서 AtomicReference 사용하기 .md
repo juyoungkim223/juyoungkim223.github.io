@@ -21,7 +21,7 @@ syncronized 블록은 다른 스레드가 블록 안으로 들어오는것을 �
 java에서는 monitor를 통해 스레드를 획득하게 되는데, 스레드가 blocked 상태로 변경되고 다시 resume 되는 것은 비용이 비싸다.  
 
 ### 스레드의 상태 전이
-![Alt text](.../../../static/img/20231124-atomic/184344.png)
+![Alt text](../../../static/img/20231124-atomic/184344.png)
 
 ## Atomic Operations
 CAS(Compare-and-swap) 작업을 의미한다.
@@ -43,6 +43,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 
 @Component
+@Slf4j
 public class Schedule {
     private final AtomicReference<LocalDateTime> prevTime = new AtomicReference<>();
 

@@ -22,7 +22,7 @@ Unity UnityEvent, event, delegate, Action.
 
 ### delegate
 += 를 이용해 subscriber들의 multi-cast 연결 또한 가능하다.
-```
+```csharp
     public int Score
     {
         get
@@ -44,7 +44,7 @@ Unity UnityEvent, event, delegate, Action.
 ```
 
 sub 클래스
-```
+```csharp
     private void OnEnable()
     {
         gameScore.OnScoreChangedDel += OnScoreChanged;
@@ -63,7 +63,7 @@ sub 클래스
 ### event
 
 event 인스턴스 생성은 delegate 생성과 유사하다. delegate 생성 시 사용하던 키워드를 event로만 변경한다.
-```
+```csharp
     public delegate void ScoreChangedDelegate(int score);
     // event 선언
     public event ScoreChangedDelegate OnScoreChangedDel;
@@ -76,7 +76,7 @@ subscriber의 구현은 delegate와 마찬가지로 따로 코드를 적지는 �
 
 event는 delegate의 하위개념이다. 그렇지만 event와 다르게 delegate에서는 아래와 같은 코드가 호출 가능하다.
 즉, 다른 스크립트에서 delegate의 변경과 호출이 가능해진다.
-```
+```csharp
         gameScore.OnScoreChangedDel = null;
         gameScore.OnScoreChangedDel();
 ```
@@ -98,8 +98,7 @@ delegate와의 차이는 미리 인스턴스를 생성할 필요가 없다.
 1. return type이 없다.
 
 2. 파라미터를 하나 이상 가질 수 있다.
-
-```
+```csharp
     private int m_score;
     public int Score
     {
@@ -123,7 +122,7 @@ delegate와의 차이는 미리 인스턴스를 생성할 필요가 없다.
 ```
 Score Property를 이용해서 Score가 변할 때마다 Action을 Invoke한다.
 
-```
+```csharp
     private void OnEnable()
     {
         gameScore.OnScoreChanged += OnScoreChanged;

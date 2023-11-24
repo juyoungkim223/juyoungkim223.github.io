@@ -57,7 +57,7 @@ BuildTarget 값으로 플랫폼간의 애셋이 다르다면 설정한다. 같�
 1. 메모리에 로드한다.
 리모트에 있는 애셋의 경우 GetDownloadSizeAsync() 함수를 호출해서 미리 다운로드가 필요해둘 수도 있고 아래와 같이 곧바로 LoadAssetAsync()를 수행해도 리모트 애셋을 메모리에 로드하는 것이 가능하다.
 애셋의 사이즈에 따라 미리 다운로드 해둘지, 바로 로드할지 선택해서 사용할 수 있다.
-
+```csharp
         Addressables.LoadAssetAsync<GameObject>(key).Completed += (op) =>
         {
             if (op.Status != AsyncOperationStatus.Failed)
@@ -65,13 +65,14 @@ BuildTarget 값으로 플랫폼간의 애셋이 다르다면 설정한다. 같�
                 instantiateGrid(key);
             }
         };
+```
 2. 메모리에 로드한 애셋 Instantiate 
-
+```csharp
         Addressables.InstantiateAsync(key).Completed += (op1) =>
         {
             op1.Result.GetComponent<Canvas>().worldCamera = mainCamera;
         };
- 
+ ```
 
 ## 애셋 번들 모드
 
