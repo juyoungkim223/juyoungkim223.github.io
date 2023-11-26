@@ -20,7 +20,7 @@ Unity UnityEvent, event, delegate, Action.
 
 ## UnityEvent, event, delegate, Action 정리
 
-### delegate
+### 1. delegate
 += 를 이용해 subscriber들의 multi-cast 연결 또한 가능하다.
 ```csharp
     public int Score
@@ -60,7 +60,7 @@ sub 클래스
         scoreText.SetText(score.ToString());
     }
 ```
-### event
+### 2. event
 
 event 인스턴스 생성은 delegate 생성과 유사하다. delegate 생성 시 사용하던 키워드를 event로만 변경한다.
 ```csharp
@@ -86,7 +86,7 @@ event instance를 대상으로
 
 The event 'event' can only appear on the left hand side of += or -= (except when used from within the type 'type')
 
-### Action
+### 3. Action
 
 System 패키지 선언을 해줘야한다.
 
@@ -121,7 +121,8 @@ delegate와의 차이는 미리 인스턴스를 생성할 필요가 없다.
         OnScoreChanged?.Invoke(m_score);
 ```
 
-3. Score Property를 이용해서 Score가 변할 때마다 Action을 Invoke한다.
+### 사용방법
+Score Property를 이용해서 Score가 변할 때마다 Action을 Invoke한다.
 ```csharp
     private void OnEnable()
     {
@@ -142,12 +143,12 @@ OnEnable(), OnDisable() 시점에 delegate가 트리거 될 때 구독한 delega
 
 Action 에도 event 키워드를 결합해서 사용하면 이벤트 기반 시스템을 조금 더 이상적으로 구현가능하다.
 
-스크립트 상에서는 모듈을 나눠서 결합을 줄이는 방법으로 Action이 많이 사용된다. Inspector에서 관리하기 위한 방법으로는 Unity Event를 이용할 수 있다.
+스크립트 상에서는 모듈을 나눠서 결합을 줄이는 방법으로 Action이 많이 사용된다. 
 
  
 
-### Unity Event
-
+### 4. Unity Event
+Inspector에서 관리하기 위한 방법으로는 Unity Event를 이용할 수 있다.
 옵저버 패턴을 사용한 버튼의 클릭이벤트인 OnClick()이 Unity Event를 사용한 것으로 에디터에서 클릭 이벤트가 발생할 때 실행할 스크립트 함수들을 등록하는 것으로 익숙하다.
 
 Editor에서 사용해야하기 때문에 특별하게 Unity Event를 이용해본적이 없다. 어떤 차이가 있나 알아보기 위해서 차이점에 대해서만 나열해보면
